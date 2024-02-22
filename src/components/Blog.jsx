@@ -16,8 +16,8 @@ const data = [{}];
 
 const Blog = () => {
   return (
-    <div className="px-10 lg:px-20 py-10 ">
-      <div className="border-l-2 px-10 lg:px-20 border-black">
+    <div className="pl-10 lg:px-20 py-10 ">
+      <div className="border-l-2 px-8 lg:px-20 border-black">
         <div className="flex flex-col lg:flex-row gap-5 lg:gap-20 lg:p-20 items-center  border-b-2  ">
           <div className="lg:flex-1 flex-row items-start space-y-6 relative ">
             <div className="absolute -left-[60px] lg:-left-[200px] top-5 border-2 px-2 lg:py-4 lg:px-5 bg-white text-lg lg:text-2xl">
