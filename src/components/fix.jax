@@ -7,14 +7,11 @@ import nba from "../assets/images/nba.png";
 import { LuChevronDown, LuChevronUp } from "react-icons/lu";
 import { MdOutlineArrowOutward } from "react-icons/md";
 import { PiArrowElbowDownRight } from "react-icons/pi";
-import MobileNavbar from "./MobileNavbar";
+
 const Navbar = () => {
   const [openDropdown, setOpenDropdown] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const toggleMobileMenu = () => {
-    setMobileMenuOpen(!mobileMenuOpen);
-  };
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (!event.target.closest(".navbar")) {
@@ -36,6 +33,10 @@ const Navbar = () => {
   const handleClick = (dropdown) => {
     setOpenDropdown(openDropdown === dropdown ? null : dropdown);
   };
+
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
   // const handleMouseEnter = (dropdown) => {
   //   setOpenDropdown(dropdown);
   // };
@@ -49,13 +50,12 @@ const Navbar = () => {
   // };
 
   return (
-<div className="fixed bg-white w-full z-50 ">
-<div className="flex flex-row border-b-2 items-center justify-between lg:justify-around border-black gap-2 px-5">
-      <div className="flex items-center justify-between w-full lg:w-auto ">
-        <span className="lg:border-x-2 lg:border-black p-3 cursor-pointer">
+    <div className="flex flex-col lg:flex-row lg:border-b-2 lg:items-center lg:justify-between border-black gap-3 px-5 lg:px-20">
+      <div className="flex justify-between lg:block">
+        <div className=" lg:border-x-2 lg:border-black p-3">
           <img src={logo} alt="" className=" h-8" />
-        </span>
-        <span className="lg:hidden cursor-pointer">
+        </div>
+        <div className="lg:hidden">
           {mobileMenuOpen ? (
             <MdClose
               onClick={toggleMobileMenu}
@@ -67,13 +67,16 @@ const Navbar = () => {
               className="text-3xl cursor-pointer"
             />
           )}
-        </span>
+        </div>
       </div>
- 
-      <ul className="hidden lg:flex justify-between gap-24 text-xl font-secondary ">
+      <ul
+        className={`lg:flex lg:flex-row justify-between gap-10 text-xl font-secondary ${
+          mobileMenuOpen ? "flex flex-col items-start w-full" : "hidden"
+        }`}
+      >
         <li
           onMouseEnter={() => handleMouseEnter("products")}
-          onClick={() => handleClick("products")} className="cursor-pointer"
+          onClick={() => handleClick("products")}
         >
           {" "}
           <span className="flex items-center gap-1">
@@ -87,7 +90,7 @@ const Navbar = () => {
                 {" "}
                 <div className="py-5">
                   <h3 className="py-4">Product</h3>{" "}
-                  <ul className=" grid grid-cols-2 gap-10 font-secondary text-base">
+                  <ul className=" grid grid-cols-1 lg:grid-cols-2 gap-10 font-secondary text-base">
                     <li className="">
                       <span className="flex gap-2 items-center">
                         <PiArrowElbowDownRight />
@@ -123,7 +126,7 @@ const Navbar = () => {
                     </li>
                   </ul>
                 </div>
-                <div className="bg-[#EDFCF2] p-5 w-1/2">
+                <div className="bg-[#EDFCF2] p-5 w-1/2 hidden lg:block">
                   <h1 className="py-4">Featured from Blog</h1>
                   <div className="flex gap-3 items-center">
                     <img src={nba} alt="" className="h-32" />
@@ -139,7 +142,7 @@ const Navbar = () => {
         </li>
         <li
           onMouseEnter={() => handleMouseEnter("solutions")}
-          onClick={() => handleClick("solutions")} className="cursor-pointer"
+          onClick={() => handleClick("solutions")}
         >
           {" "}
           <span className="flex items-center gap-1">
@@ -226,10 +229,10 @@ const Navbar = () => {
             </div>
           )}
         </li>
-        <li className="cursor-pointer" >Careers</li>
+        <li>Careers</li>
         <li
           onMouseEnter={() => handleMouseEnter("resources")}
-          onClick={() => handleClick("resources")} className="cursor-pointer"
+          onClick={() => handleClick("resources")}
         >
           {" "}
           <span className="flex items-center gap-1">
@@ -296,14 +299,6 @@ const Navbar = () => {
         <RxHamburgerMenu />
       </div> */}
     </div>
-    <MobileNavbar
-        isOpen={mobileMenuOpen}
-        setOpen={setMobileMenuOpen}
-        openDropdown={openDropdown}
-        setOpenDropdown={setOpenDropdown}
-      />
-</div>
-    
   );
 };
 
